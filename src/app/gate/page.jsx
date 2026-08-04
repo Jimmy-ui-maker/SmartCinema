@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { QrReader } from "react-qr-reader";
+import { Html5Qrcode } from "html5-qrcode";
+import { useRef } from "react";
 import { useSearchParams } from "next/navigation";
 
 export default function GateScannerPage() {
@@ -78,22 +79,22 @@ export default function GateScannerPage() {
 
       let scannedTicketId = "";
 
-      // URL QR
+      // QR contains URL
       if (text.includes("/verify/")) {
         scannedTicketId = text.split("/verify/")[1];
       }
 
-      // JSON QR
+      // QR contains JSON
       else {
         try {
           scannedTicketId = JSON.parse(text).ticketId;
         } catch {
-          throw new Error("Invalid QR");
+          scannedTicketId = text;
         }
       }
 
       await handleTicket(scannedTicketId);
-    } catch (error) {
+    } catch {
       setResult(null);
 
       setMessage("❌ Invalid QR Code.");
@@ -103,6 +104,47 @@ export default function GateScannerPage() {
       }, 2000);
     }
   };
+  const scannerRef = useRef(null);
+
+  useEffect(() => {
+    if (scannerRef.current) return;
+
+    const scanner = new Html5Qrcode("reader");
+
+    scannerRef.current = scanner;
+
+    scanner
+      .start(
+        { facingMode: "environment" },
+        {
+          fps: 10,
+          qrbox: {
+            width: 250,
+            height: 250,
+          },
+        },
+        (decodedText) => {
+          handleScan({
+            text: decodedText,
+          });
+        },
+        () => {},
+      )
+      .catch((err) => {
+        console.log(err);
+      });
+
+    return () => {
+      if (scannerRef.current && scannerRef.current.isScanning) {
+        scannerRef.current
+          .stop()
+          .then(() => {
+            scannerRef.current.clear();
+          })
+          .catch(() => {});
+      }
+    };
+  }, []);
 
   return (
     <div className="container py-5">
@@ -118,19 +160,13 @@ export default function GateScannerPage() {
         <div className="col-lg-6">
           <div className="card shadow">
             <div className="card-body">
-              <QrReader
-                constraints={{
-                  facingMode: "environment",
-                }}
-                onResult={(result) => {
-                  if (result) {
-                    handleScan(result);
-                  }
-                }}
+              <div
+                id="reader"
                 style={{
                   width: "100%",
+                  minHeight: "350px",
                 }}
-              />
+              ></div>
             </div>
           </div>
 
@@ -158,7 +194,7 @@ export default function GateScannerPage() {
                     <p>
                       <strong>Customer</strong>
                       <br />
-                      {result.customer.firstName} {result.customer.lastName}
+                      {result.customer.name}
                     </p>
 
                     <p>

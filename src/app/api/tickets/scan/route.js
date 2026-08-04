@@ -98,11 +98,11 @@ export async function POST(request) {
       })
       .populate("customer");
 
-    if (!booking.schedule) {
+    if (!booking) {
       return NextResponse.json(
         {
           success: false,
-          message: "Schedule not found.",
+          message: "Booking not found.",
         },
         {
           status: 404,
@@ -110,11 +110,11 @@ export async function POST(request) {
       );
     }
 
-    if (!booking) {
+    if (!booking.schedule) {
       return NextResponse.json(
         {
           success: false,
-          message: "Booking not found.",
+          message: "Schedule not found.",
         },
         {
           status: 404,
@@ -198,7 +198,7 @@ export async function POST(request) {
     // MARK USED
     // =====================================
 
-    await Ticket.findByIdAndUpdate(
+    const updatedTicket = await Ticket.findByIdAndUpdate(
       ticket._id,
       {
         ticketStatus: "Used",
@@ -207,8 +207,6 @@ export async function POST(request) {
         new: true,
       },
     );
-
-    ticket.ticketStatus = "Used";
 
     // =====================================
     // SUCCESS
@@ -219,9 +217,9 @@ export async function POST(request) {
       message: "Ticket verified successfully. Welcome!",
 
       ticket: {
-        id: ticket._id,
-        ticketNumber: ticket.ticketNumber,
-        ticketStatus: ticket.ticketStatus,
+        id: updatedTicket._id,
+        ticketNumber: updatedTicket.ticketNumber,
+        ticketStatus: updatedTicket.ticketStatus,
       },
 
       booking: {
