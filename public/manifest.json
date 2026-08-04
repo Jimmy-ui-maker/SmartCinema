@@ -1,0 +1,38 @@
+{
+  "name": "UCMN - United Corps Members of Nigeria.",
+  "short_name": "UCMN",
+  "description": "Projects, services, and contact",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#111a2e",
+  "theme_color": "#111a2e",
+  "orientation": "portrait",
+  "id": "/",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/icons/ucmn_logo_192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/ucmn_logo_256x256.png",
+      "sizes": "256x256",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/ucmn_logo_512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/ucmn_logo_1024x1024.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
