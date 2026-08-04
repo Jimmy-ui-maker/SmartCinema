@@ -1,5 +1,27 @@
 "use client";
 
+{
+  /** 
+    {
+      id: "bookings",
+      label: "Bookings",
+      icon: "bi-ticket-perforated",
+    },
+
+    {
+      id: "payments",
+      label: "Payments",
+      icon: "bi-credit-card",
+    },
+
+     {
+      id: "reports",
+      label: "Reports",
+      icon: "bi-bar-chart",
+    },
+    */
+}
+
 export default function AdminSidebar({ activeTab, setActiveTab }) {
   const menus = [
     {
@@ -33,27 +55,9 @@ export default function AdminSidebar({ activeTab, setActiveTab }) {
     },
 
     {
-      id: "bookings",
-      label: "Bookings",
-      icon: "bi-ticket-perforated",
-    },
-
-    {
-      id: "payments",
-      label: "Payments",
-      icon: "bi-credit-card",
-    },
-
-    {
       id: "tickets",
       label: "Tickets",
       icon: "bi-qr-code",
-    },
-
-    {
-      id: "reports",
-      label: "Reports",
-      icon: "bi-bar-chart",
     },
   ];
 
