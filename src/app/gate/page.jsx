@@ -1,11 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Html5Qrcode } from "html5-qrcode";
-import { useRef } from "react";
-import { useSearchParams } from "next/navigation";
+//import { useEffect, useState } from "react";
+//import { Html5Qrcode } from "html5-qrcode";
+//import { useRef } from "react";
+//import { useSearchParams } from "next/navigation";
 
 export default function GateScannerPage() {
+  {
+    /** 
   const [result, setResult] = useState(null);
   const [processing, setProcessing] = useState(false);
 
@@ -145,7 +147,8 @@ export default function GateScannerPage() {
       }
     };
   }, []);
-
+*/
+  }
   return (
     <div className="container py-5">
       <div className="text-center mb-4">
