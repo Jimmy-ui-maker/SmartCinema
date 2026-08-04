@@ -154,7 +154,7 @@ export default function GateScannerPage() {
       <div className="text-center mb-4">
         <h2>🎬 CinemaHub Gate Scanner</h2>
 
-        <p className="text-muted">
+        <p className="">
           Scan customer tickets for entry validation.
         </p>
       </div>
