@@ -156,6 +156,7 @@ export default function GateScannerPage() {
         </p>
       </div>
 
+      {/** 
       <div className="row justify-content-center">
         <div className="col-lg-6">
           <div className="card shadow">
@@ -245,6 +246,7 @@ export default function GateScannerPage() {
           )}
         </div>
       </div>
+      */}
     </div>
   );
 }
