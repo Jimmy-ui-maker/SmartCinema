@@ -11,39 +11,59 @@ export function AuthProvider({ children }) {
 
   const [loading, setLoading] = useState(true);
 
+  // ==========================================
+  // LOAD USER FROM LOCAL STORAGE
+  // ==========================================
+
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
+
     const storedToken = localStorage.getItem("token");
 
     if (storedUser && storedToken) {
       setUser(JSON.parse(storedUser));
+
       setToken(storedToken);
     }
 
     setLoading(false);
   }, []);
 
-  // Login
+  // ==========================================
+  // LOGIN
+  // ==========================================
+
   const login = (userData, tokenData) => {
     localStorage.setItem("user", JSON.stringify(userData));
+
     localStorage.setItem("token", tokenData);
 
     setUser(userData);
+
     setToken(tokenData);
   };
 
-  // Logout
+  // ==========================================
+  // LOGOUT
+  // ==========================================
+
   const logout = () => {
     localStorage.removeItem("user");
+
     localStorage.removeItem("token");
 
     setUser(null);
+
     setToken(null);
   };
 
-  // Update Logged-in User
+  // ==========================================
+  // UPDATE USER
+  // ==========================================
+
   const updateUser = (updatedUser) => {
     localStorage.setItem("user", JSON.stringify(updatedUser));
+
     setUser(updatedUser);
   };
 
@@ -51,14 +71,18 @@ export function AuthProvider({ children }) {
     <AuthContext.Provider
       value={{
         user,
+
         token,
+
         loading,
 
-        login,
-        logout,
-        updateUser,
-
         isAuthenticated: !!token,
+
+        login,
+
+        logout,
+
+        updateUser,
       }}
     >
       {children}

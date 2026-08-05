@@ -112,6 +112,10 @@ export default function Navbar() {
     setResults([]);
     router.push(href);
   };
+  const handleLogout = () => {
+    logout();
+    router.replace("/auth/login");
+  };
 
   return (
     <>
@@ -170,7 +174,7 @@ export default function Navbar() {
                   Profile
                 </Link>
 
-                <button className="btn btn-danger" onClick={logout}>
+                <button className="btn btn-danger" onClick={handleLogout}>
                   Logout
                 </button>
               </>
