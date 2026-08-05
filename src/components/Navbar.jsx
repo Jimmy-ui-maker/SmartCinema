@@ -50,12 +50,12 @@ export default function Navbar() {
     {
       title: "Customer Dashboard",
       href: "/customerdashboard",
-      icon: "bi-person",
+      icon: "bi-bi-person",
     },
     {
       title: "Cashier Dashboard",
       href: "/cashierdashboard",
-      icon: "bi-person",
+      icon: "bi-bi-person",
     },
     {
       title: "Supper Admin",
