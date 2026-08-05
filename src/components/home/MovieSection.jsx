@@ -1,56 +1,56 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import MovieCard from "./MovieCard";
 
 export default function MovieSection() {
-  const movies = [
-    {
-      _id: "1",
-      title: "The Last Journey",
-      genre: "Action",
-      duration: "130",
-      rating: "8.5",
-      poster: "/imgs/movie1.jpg",
-      description: "An epic adventure filled with action and suspense.",
-    },
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-    {
-      _id: "2",
-      title: "Dark Horizon",
-      genre: "Sci-Fi",
-      duration: "118",
-      rating: "9.0",
-      poster: "/imgs/movie2.jpg",
-      description: "A futuristic story beyond imagination.",
-    },
+  const fetchMovies = async () => {
+    try {
+      const res = await fetch("/api/movies");
+      const data = await res.json();
 
-    {
-      _id: "3",
-      title: "Love Beyond Time",
-      genre: "Romance",
-      duration: "105",
-      rating: "8.2",
-      poster: "/imgs/movie3.jpg",
-      description: "A beautiful story about love and destiny.",
-    },
-  ];
+      if (data.success) {
+        setMovies(data.movies);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchMovies();
+  }, []);
 
   return (
-    <section className="movie-section">
+    <section className="movie-section py-5">
       <div className="container">
-        <div className="section-header">
+        <div className="section-title mb-5 text-center">
           <h2>Latest Movies</h2>
-
           <p>Discover movies currently showing in our cinemas.</p>
         </div>
 
-        <div className="row g-4">
-          {movies.map((movie) => (
-            <div className="col-lg-4 col-md-6" key={movie._id}>
-              <MovieCard movie={movie} />
-            </div>
-          ))}
-        </div>
+        {loading ? (
+          <div className="text-center py-5">
+            <div className="spinner-border text-danger"></div>
+          </div>
+        ) : movies.length === 0 ? (
+          <div className="text-center py-5">
+            <h5>No movies available.</h5>
+          </div>
+        ) : (
+          <div className="row g-4">
+            {movies.map((movie) => (
+              <div className="col-lg-4 col-md-6" key={movie._id}>
+                <MovieCard movie={movie} />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

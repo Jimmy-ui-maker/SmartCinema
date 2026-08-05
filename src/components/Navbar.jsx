@@ -38,6 +38,31 @@ export default function Navbar() {
       icon: "bi-calendar-event",
     },
     {
+      title: "Gate",
+      href: "/gate",
+      icon: "bi-camera",
+    },
+    {
+      title: "Admin Dashboard",
+      href: "/admindashboard",
+      icon: "bi-person",
+    },
+    {
+      title: "Customer Dashboard",
+      href: "/customerdashboard",
+      icon: "bi-person",
+    },
+    {
+      title: "Cashier Dashboard",
+      href: "/cashierdashboard",
+      icon: "bi-person",
+    },
+    {
+      title: "Supper Admin",
+      href: "/superadmin",
+      icon: "bi-person",
+    },
+    {
       title: "Login",
       href: "/auth/login",
       icon: "bi-box-arrow-in-right",
