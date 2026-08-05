@@ -8,7 +8,8 @@ export default function HeroSection() {
       <div className="cinema-overlay"></div>
 
       <div className="container cinema-hero-content">
-        <div className="row">
+        <div className="row align-items-center g-5">
+          {/* LEFT */}
           <div className="col-lg-12">
             <span className="hero-badge">
               <i className="bi bi-camera-reels-fill me-2"></i>
@@ -40,7 +41,8 @@ export default function HeroSection() {
               </Link>
             </div>
           </div>
-          
+
+         
         </div>
       </div>
     </section>

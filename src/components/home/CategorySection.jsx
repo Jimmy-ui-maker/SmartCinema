@@ -1,70 +1,78 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
 export default function CategorySection() {
-  const categories = [
-    {
-      name: "Action",
-      icon: "bi-lightning-charge-fill",
-      count: "25 Movies",
-    },
+  const [categories, setCategories] = useState([]);
 
-    {
-      name: "Adventure",
-      icon: "bi-compass-fill",
-      count: "18 Movies",
-    },
+  useEffect(() => {
+    fetchCategories();
+  }, []);
 
-    {
-      name: "Comedy",
-      icon: "bi-emoji-laughing-fill",
-      count: "30 Movies",
-    },
+  const fetchCategories = async () => {
+    try {
+      const res = await fetch("/api/genres");
+      const data = await res.json();
 
-    {
-      name: "Romance",
-      icon: "bi-heart-fill",
-      count: "15 Movies",
-    },
-
-    {
-      name: "Horror",
-      icon: "bi-moon-stars-fill",
-      count: "12 Movies",
-    },
-
-    {
-      name: "Sci-Fi",
-      icon: "bi-rocket-fill",
-      count: "20 Movies",
-    },
-  ];
+      if (data.success) {
+        setCategories(data.genres);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <section className="category-section">
       <div className="container">
-        <div className="section-header">
+        <div className="section-title text-center mb-5">
           <h2>Explore Categories</h2>
-
           <p>Find your favourite movies by genre.</p>
         </div>
 
         <div className="row g-4">
-          {categories.map((category, index) => (
-            <div className="col-lg-2 col-md-4 col-6" key={index}>
-              <Link
-                href={`/movies?genre=${category.name}`}
-                className="category-card"
-              >
-                <i className={`bi ${category.icon}`}></i>
-
-                <h6>{category.name}</h6>
-
-                <small>{category.count}</small>
-              </Link>
+          {categories.length === 0 ? (
+            <div className="col-12 text-center">
+              <p className="text-muted">No categories available.</p>
             </div>
-          ))}
+          ) : (
+            categories.map((category) => (
+              <div className="col-lg-2 col-md-4 col-6" key={category._id}>
+                <Link
+                  href={`/movies?genre=${category._id}`}
+                  className="category-card"
+                >
+                  <div className="mb-3">
+                    {category.image ? (
+                      <img
+                        src={category.image}
+                        alt={category.name}
+                        className="img-fluid rounded-circle"
+                        style={{
+                          width: "70px",
+                          height: "70px",
+                          objectFit: "cover",
+                        }}
+                      />
+                    ) : (
+                      <i
+                        className="bi bi-film"
+                        style={{ fontSize: "2.5rem" }}
+                      ></i>
+                    )}
+                  </div>
+
+                  <h6>{category.name}</h6>
+
+                  <small>
+                    {category.movieCount ?? 0}{" "}
+                    {(category.movieCount ?? 0) === 1 ? "Movie" : "Movies"}
+                  </small>
+                </Link>
+              </div>
+            ))
+          )}
         </div>
       </div>
     </section>

@@ -1,122 +1,218 @@
 "use client";
 
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 
 export default function Navbar() {
+  const router = useRouter();
+
   const { user, logout } = useAuth();
+
+  const [search, setSearch] = useState("");
+  const [results, setResults] = useState([]);
+  const [showSearch, setShowSearch] = useState(false);
+
+  const searchRef = useRef(null);
+
+  const staticLinks = [
+    {
+      title: "Home",
+      href: "/",
+      icon: "bi-house",
+    },
+    {
+      title: "Movies",
+      href: "/movies",
+      icon: "bi-film",
+    },
+    {
+      title: "My Tickets",
+      href: "/bookings",
+      icon: "bi-ticket-perforated",
+    },
+    {
+      title: "Schedule",
+      href: "/schedule",
+      icon: "bi-calendar-event",
+    },
+    {
+      title: "Login",
+      href: "/auth/login",
+      icon: "bi-box-arrow-in-right",
+    },
+    {
+      title: "Register",
+      href: "/auth/register",
+      icon: "bi-person-plus",
+    },
+  ];
+
+  // ==========================================
+  // LIVE SEARCH
+  // ==========================================
+
+  useEffect(() => {
+    if (!search.trim()) {
+      setResults([]);
+      return;
+    }
+
+    const filtered = staticLinks.filter((item) =>
+      item.title.toLowerCase().includes(search.toLowerCase()),
+    );
+
+    setResults(filtered);
+  }, [search]);
+
+  // ==========================================
+  // CLOSE SEARCH WHEN CLICK OUTSIDE
+  // ==========================================
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        setResults([]);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const handleSelect = (href) => {
+    setSearch("");
+    setResults([]);
+    router.push(href);
+  };
 
   return (
     <>
       <nav className="navbar navbar-expand-lg cinema-navbar">
-        <div className="container-fluid">
-          {/* LOGO */}
+        <div className="container">
+          {/* ================= LOGO ================= */}
 
           <Link href="/" className="navbar-brand cinema-brand">
             <i className="bi bi-film me-2"></i>
             Cinema<span>Hub</span>
           </Link>
 
-          {/* SEARCH */}
+          {/* ================= DESKTOP SEARCH ================= */}
 
-          <div className="cinema-search d-none d-md-flex">
+          <div
+            className="cinema-search d-none d-lg-flex position-relative mx-auto"
+            ref={searchRef}
+          >
             <i className="bi bi-search"></i>
 
-            <input type="text" placeholder="Search movies..." />
+            <input
+              type="text"
+              placeholder="Search pages..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+
+            {search && (
+              <div className="search-dropdown">
+                {results.length > 0 ? (
+                  results.map((item) => (
+                    <button
+                      key={item.href}
+                      type="button"
+                      className="search-item"
+                      onClick={() => handleSelect(item.href)}
+                    >
+                      <i className={`bi ${item.icon} me-2`}></i>
+
+                      {item.title}
+                    </button>
+                  ))
+                ) : (
+                  <div className="search-empty">No results found</div>
+                )}
+              </div>
+            )}
           </div>
 
-          {/* TOGGLER */}
+          {/* ================= DESKTOP BUTTONS ================= */}
+
+          <div className="d-none d-lg-flex align-items-center gap-2">
+            {user ? (
+              <>
+                <Link href="/profile" className="btn btn-outline-light">
+                  Profile
+                </Link>
+
+                <button className="btn btn-danger" onClick={logout}>
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link href="/auth/login" className="btn btn-outline-light">
+                  Login
+                </Link>
+
+                <Link href="/auth/register" className="btn btn-primary">
+                  Register
+                </Link>
+              </>
+            )}
+          </div>
+
+          {/* ================= MOBILE SEARCH ================= */}
 
           <button
-            className="navbar-toggler shadow-none"
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#cinemaMenu"
+            className="btn d-lg-none"
+            onClick={() => setShowSearch(!showSearch)}
           >
-            <span className="navbar-toggler-icon"></span>
+            <i className="bi bi-search fs-4"></i>
           </button>
         </div>
       </nav>
 
-      {/* OFFCANVAS */}
+      {/* ================= MOBILE SEARCH BOX ================= */}
 
-      <div
-        className="offcanvas offcanvas-end cinema-offcanvas"
-        tabIndex="-1"
-        id="cinemaMenu"
-      >
-        <div className="offcanvas-header">
-          <h5 className="fw-bold">CinemaHub Menu</h5>
+      {showSearch && (
+        <div className="container d-lg-none mt-2">
+          <div className="cinema-search position-relative" ref={searchRef}>
+            <i className="bi bi-search"></i>
 
-          <button className="btn-close" data-bs-dismiss="offcanvas"></button>
-        </div>
+            <input
+              type="text"
+              placeholder="Search pages..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
 
-        <div className="offcanvas-body">
-          <ul className="list-unstyled cinema-menu">
-            <li>
-              <Link href="/">
-                <i className="bi bi-house me-2"></i>
-                Home
-              </Link>
-            </li>
+            {search && (
+              <div className="search-dropdown">
+                {results.length > 0 ? (
+                  results.map((item) => (
+                    <button
+                      key={item.href}
+                      type="button"
+                      className="search-item"
+                      onClick={() => {
+                        handleSelect(item.href);
+                        setShowSearch(false);
+                      }}
+                    >
+                      <i className={`bi ${item.icon} me-2`}></i>
 
-            <li>
-              <Link href="/movies">
-                <i className="bi bi-film me-2"></i>
-                Movies
-              </Link>
-            </li>
-
-            <li>
-              <Link href="/bookings">
-                <i className="bi bi-ticket-perforated me-2"></i>
-                My Tickets
-              </Link>
-            </li>
-
-            <li>
-              <Link href="/schedule">
-                <i className="bi bi-calendar-event me-2"></i>
-                Schedule
-              </Link>
-            </li>
-
-            {user ? (
-              <>
-                <li>
-                  <Link href="/profile">
-                    <i className="bi bi-person me-2"></i>
-                    Profile
-                  </Link>
-                </li>
-
-                <li>
-                  <button className="logout-btn" onClick={logout}>
-                    <i className="bi bi-box-arrow-right me-2"></i>
-                    Logout
-                  </button>
-                </li>
-              </>
-            ) : (
-              <>
-                <li>
-                  <Link href="/auth/login">
-                    <i className="bi bi-box-arrow-in-right me-2"></i>
-                    Login
-                  </Link>
-                </li>
-
-                <li>
-                  <Link href="/auth/register">
-                    <i className="bi bi-person-plus me-2"></i>
-                    Register
-                  </Link>
-                </li>
-              </>
+                      {item.title}
+                    </button>
+                  ))
+                ) : (
+                  <div className="search-empty">No results found</div>
+                )}
+              </div>
             )}
-          </ul>
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 }
