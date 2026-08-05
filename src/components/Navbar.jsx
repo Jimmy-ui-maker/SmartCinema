@@ -63,6 +63,11 @@ export default function Navbar() {
       icon: "bi-person",
     },
     {
+      title: "Staff Login",
+      href: "stafflogin",
+      icon: "bi-box-arrow-in-right",
+    },
+    {
       title: "Login",
       href: "/auth/login",
       icon: "bi-box-arrow-in-right",

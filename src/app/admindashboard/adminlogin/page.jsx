@@ -202,7 +202,7 @@ export default function AdminLoginPage() {
                 👤
               </a>
 
-              <a href="/admindashboard/adminlogin" className="quick-link-btn">
+              <a href="/stafflogin" className="quick-link-btn">
                 🛡️
               </a>
 

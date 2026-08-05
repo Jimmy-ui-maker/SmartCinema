@@ -16,7 +16,7 @@ export default function AdminNavbar() {
 
   const logout = () => {
     localStorage.clear();
-    router.push("/admindashboard/adminlogin");
+    router.push("/stafflogin");
   };
 
   return (
