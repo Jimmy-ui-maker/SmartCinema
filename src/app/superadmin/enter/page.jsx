@@ -16,8 +16,8 @@ export default function SuperAdminLoginPage() {
   const [loading, setLoading] = useState(false);
 
   const SUPER_ADMIN = {
-    email: "supper@gmail.com",
-    password: "supperadmin",
+    email: "super@gmail.com",
+    password: "superadmin",
   };
 
   const handleLogin = async (e) => {

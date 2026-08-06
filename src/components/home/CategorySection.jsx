@@ -34,7 +34,7 @@ export default function CategorySection() {
         <div className="row g-4">
           {categories.length === 0 ? (
             <div className="col-12 text-center">
-              <p className="text-muted">No categories available.</p>
+              <p className="">No categories available.</p>
             </div>
           ) : (
             categories.map((category) => (
