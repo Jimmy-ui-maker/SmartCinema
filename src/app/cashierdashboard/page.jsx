@@ -3,7 +3,10 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
+import StaffNavbar from "@/components/AdminDashboard/StaffNavbar";
 import Bookings from "@/components/CashierDashboard/Bookings";
+
+import "../admindashboard/admindashboard.css";
 
 export default function CashierDashboardPage() {
   const router = useRouter();
@@ -22,21 +25,26 @@ export default function CashierDashboardPage() {
   }, [router]);
 
   return (
-    <div className="container-fluid py-4">
-      <div className="d-flex justify-content-between align-items-center mb-4">
-        <div>
-          <h2 className="fw-bold mb-1">💼 Cashier Dashboard</h2>
-          <p className="text-muted mb-0">
-            Manage bookings and verify customer payments.
-          </p>
-        </div>
-      </div>
+    <>
+      <StaffNavbar activeTab={activeTab} setActiveTab={setActiveTab} />
 
-      <div className="card shadow-sm">
-        <div className="card-body">
-          <Bookings />
-        </div>
+      <div className="admin-layout">
+        <main className="admin-content">
+          <div className="container-fluid py-4">
+            <div className="mb-4">
+              <h2 className="fw-bold">💼 Cashier Dashboard</h2>
+
+              <p className="">Manage bookings and verify customer payments.</p>
+            </div>
+
+            <div className="card shadow-sm border-0">
+              <div className="card-body">
+                <Bookings />
+              </div>
+            </div>
+          </div>
+        </main>
       </div>
-    </div>
+    </>
   );
 }

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-import AdminNavbar from "@/components/AdminDashboard/AdminNavbar";
+import StaffNavbar from "@/components/AdminDashboard/StaffNavbar";
 
 import AdminSidebar from "@/components/AdminDashboard/AdminSidebar";
 
@@ -62,7 +62,10 @@ export default function AdminDashboard() {
 
   return (
     <div className="admin-page">
-      <AdminNavbar />
+      <StaffNavbar
+  activeTab={activeTab}
+  setActiveTab={setActiveTab}
+/>
 
       <div className="admin-layout">
         <AdminSidebar activeTab={activeTab} setActiveTab={setActiveTab} />

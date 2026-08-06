@@ -1,45 +1,124 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 export default function DashboardOverview() {
+  const [stats, setStats] = useState({
+    movies: 0,
+    genres: 0,
+    halls: 0,
+    schedules: 0,
+    bookings: 0,
+    payments: 0,
+    tickets: 0,
+    customers: 0,
+  });
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchDashboard();
+  }, []);
+
+  const fetchDashboard = async () => {
+    try {
+      const res = await fetch("/api/dashboard");
+
+      const data = await res.json();
+
+      if (data.success) {
+        setStats(data.stats);
+      }
+    } catch (error) {
+      console.error("Dashboard Error:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const cards = [
     {
       title: "Movies",
-      number: "0",
+      number: stats.movies,
       icon: "bi-film",
+      color: "primary",
+    },
+
+    {
+      title: "Genres",
+      number: stats.genres,
+      icon: "bi-tags",
+      color: "warning",
+    },
+
+    {
+      title: "Halls",
+      number: stats.halls,
+      icon: "bi-building",
+      color: "success",
+    },
+
+    {
+      title: "Schedules",
+      number: stats.schedules,
+      icon: "bi-calendar-event",
+      color: "info",
     },
 
     {
       title: "Bookings",
-      number: "0",
-      icon: "bi-ticket",
+      number: stats.bookings,
+      icon: "bi-ticket-perforated",
+      color: "danger",
     },
 
     {
       title: "Payments",
-      number: "0",
-      icon: "bi-wallet",
+      number: stats.payments,
+      icon: "bi-credit-card",
+      color: "secondary",
     },
 
     {
       title: "Tickets",
-      number: "0",
+      number: stats.tickets,
       icon: "bi-qr-code",
+      color: "dark",
+    },
+
+    {
+      title: "Customers",
+      number: stats.customers,
+      icon: "bi-people",
+      color: "primary",
     },
   ];
 
   return (
     <div>
-      <h3>Dashboard Overview</h3>
+      <h2 className="fw-bold">Dashboard Overview</h2>
 
-      <div className="row g-4 mt-3">
+      <p className="text-muted">Monitor your cinema activities in real time.</p>
+
+      <div className="row g-4 mt-2">
         {cards.map((card) => (
-          <div className="col-md-3" key={card.title}>
+          <div className="col-xl-3 col-lg-4 col-md-6" key={card.title}>
             <div className="admin-stat">
-              <i className={`bi ${card.icon}`}></i>
+              <div className={`admin-stat-icon bg-${card.color}`}>
+                <i className={`bi ${card.icon}`}></i>
+              </div>
 
-              <h4>{card.number}</h4>
+              <div className="admin-stat-content">
+                <h3>
+                  {loading ? (
+                    <span className="spinner-border spinner-border-sm"></span>
+                  ) : (
+                    card.number
+                  )}
+                </h3>
 
-              <p>{card.title}</p>
+                <p>{card.title}</p>
+              </div>
             </div>
           </div>
         ))}

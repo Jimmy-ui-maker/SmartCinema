@@ -64,7 +64,7 @@ export default function Navbar() {
     },
     {
       title: "Staff Login",
-      href: "stafflogin",
+      href: "/stafflogin",
       icon: "bi-box-arrow-in-right",
     },
     {
