@@ -2403,7 +2403,6 @@ SUPER ADMIN MANAGEMENT
 
 .admin-mobile-nav {
   display: none;
-  
 }
 
 @media (max-width: 991px) {
@@ -2417,7 +2416,6 @@ SUPER ADMIN MANAGEMENT
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
-    
   }
 
   .admin-navbar .d-flex {
@@ -2553,7 +2551,7 @@ SUPER ADMIN MANAGEMENT
   align-items: center;
   gap: 18px;
 
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .admin-stat:hover {
@@ -3450,5 +3448,137 @@ UPLOAD BOX
 
   .profile-btn {
     width: 100%;
+  }
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.cinema-footer {
+  background: #09090f;
+  border-top: 1px solid #27272a;
+  color: #cbd5e1;
+  padding: 70px 0 25px;
+  margin-top: 80px;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.footer-logo {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+}
+
+.footer-brand h4 {
+  color: #fff;
+  font-weight: 800;
+  margin: 0;
+}
+
+.footer-text {
+  color: #94a3b8;
+  line-height: 1.8;
+  margin-bottom: 25px;
+}
+
+.footer-title {
+  color: #fff;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 14px;
+}
+
+.footer-links a {
+  color: #94a3b8;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-links a:hover {
+  color: var(--primary);
+  padding-left: 6px;
+}
+
+.footer-contact p {
+  margin-bottom: 14px;
+  color: #94a3b8;
+}
+
+.footer-contact i {
+  color: var(--primary);
+  width: 24px;
+}
+
+.footer-social {
+  display: flex;
+  gap: 12px;
+}
+
+.footer-social a {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: #18181b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-decoration: none;
+  transition: 0.3s;
+  font-size: 18px;
+}
+
+.footer-social a:hover {
+  background: var(--primary);
+  color: white;
+  transform: translateY(-5px);
+}
+
+.footer-divider {
+  border-color: #27272a;
+  margin: 45px 0 25px;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #94a3b8;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 992px) {
+  .cinema-footer {
+    text-align: center;
+  }
+
+  .footer-brand {
+    justify-content: center;
+  }
+
+  .footer-social {
+    justify-content: center;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 10px;
   }
 }
