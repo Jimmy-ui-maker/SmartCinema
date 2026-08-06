@@ -108,7 +108,7 @@ export default function AdminLoginPage() {
 
   return (
     <section className="auth-section">
-      <div className="profile-card">
+      <div className="container profile-card">
         <div className="text-center mb-4">
           <i
             className="bi bi-shield-fill-check"
@@ -198,7 +198,7 @@ export default function AdminLoginPage() {
           <span className="text-secondary">Are you a customer?</span>
 
           <a href="/auth/login" className="auth-link fw-bold ms-2">
-            Customer Login
+            Login
           </a>
         </div>
 
