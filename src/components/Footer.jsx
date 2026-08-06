@@ -57,11 +57,11 @@ export default function Footer() {
               </li>
 
               <li>
-                <Link href="/schedule">Schedules</Link>
+                <Link href="/customerdashboard/bookings">Bookings</Link>
               </li>
 
               <li>
-                <Link href="/bookings">Bookings</Link>
+                <Link href="/customerdashboard/tickets">Tickets</Link>
               </li>
             </ul>
           </div>
