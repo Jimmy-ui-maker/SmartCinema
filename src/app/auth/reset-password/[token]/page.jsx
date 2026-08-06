@@ -186,27 +186,6 @@ export default function ResetPasswordPage({ params }) {
             </Link>
           </div>
 
-          <div className="quick-links-box mt-4">
-            <h6 className="quick-links-title">Quick Access</h6>
-
-            <div className="quick-links-grid">
-              <Link href="/" className="quick-link-btn">
-                🏠
-              </Link>
-
-              <Link href="/auth/login" className="quick-link-btn">
-                👤
-              </Link>
-
-              <Link href="/auth/register" className="quick-link-btn">
-                ✨
-              </Link>
-
-              <Link href="/stafflogin" className="quick-link-btn">
-                🛡️
-              </Link>
-            </div>
-          </div>
         </div>
       </div>
     </section>
