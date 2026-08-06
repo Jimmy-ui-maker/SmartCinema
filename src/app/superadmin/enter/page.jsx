@@ -73,7 +73,6 @@ export default function SuperAdminLoginPage() {
               <input
                 type="email"
                 className="custom-input ps-5"
-                placeholder="admin@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -92,7 +91,6 @@ export default function SuperAdminLoginPage() {
               <input
                 type={showPassword ? "text" : "password"}
                 className="custom-input ps-5 pe-5"
-                placeholder="Enter password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required

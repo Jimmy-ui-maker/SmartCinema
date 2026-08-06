@@ -98,7 +98,6 @@ export default function LoginForm() {
             type="email"
             name="email"
             className="custom-input ps-5"
-            placeholder="johndoe@email.com"
             value={form.email}
             onChange={handleChange}
             autoComplete="email"
@@ -118,7 +117,6 @@ export default function LoginForm() {
             type={showPassword ? "text" : "password"}
             name="password"
             className="custom-input ps-5 pe-5"
-            placeholder="Enter your password"
             value={form.password}
             onChange={handleChange}
             autoComplete="current-password"
