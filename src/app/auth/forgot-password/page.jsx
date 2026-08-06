@@ -55,10 +55,7 @@ export default function ForgotPasswordPage() {
   return (
     <section className="auth-section">
       <div className="container profile-card">
-        <div
-          className="auth-card mx-auto"
-          style={{ maxWidth: "500px" }}
-        >
+        <div className="auth-card mx-auto" style={{ maxWidth: "500px" }}>
           {/* HEADER */}
 
           <div className="text-center mb-4">
@@ -70,13 +67,10 @@ export default function ForgotPasswordPage() {
               }}
             ></i>
 
-            <h2 className="auth-title mt-3">
-              Forgot Password
-            </h2>
+            <h2 className="auth-title mt-3">Forgot Password</h2>
 
             <p className="auth-subtitle">
-              Enter your account email to generate a password
-              reset token.
+              Enter your account email to generate a password reset token.
             </p>
           </div>
 
@@ -84,9 +78,7 @@ export default function ForgotPasswordPage() {
             {/* EMAIL */}
 
             <div className="mb-3">
-              <label className="custom-label">
-                Email Address
-              </label>
+              <label className="custom-label">Email Address</label>
 
               <div className="position-relative">
                 <i className="bi bi-envelope input-icon"></i>
@@ -97,9 +89,7 @@ export default function ForgotPasswordPage() {
                   placeholder="Enter your email"
                   required
                   value={email}
-                  onChange={(e) =>
-                    setEmail(e.target.value)
-                  }
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
             </div>
@@ -128,9 +118,7 @@ export default function ForgotPasswordPage() {
 
             {token && (
               <div className="alert alert-warning">
-                <h6 className="fw-bold">
-                  Development Reset Token
-                </h6>
+                <h6 className="fw-bold">Development Reset Token</h6>
 
                 <div
                   className="p-2 bg-dark text-light rounded small mt-2"
@@ -142,7 +130,7 @@ export default function ForgotPasswordPage() {
                 </div>
 
                 <Link
-                  href={`/auth/reset-password?token=${token}`}
+                  href={`/auth/reset-password/${token}`}
                   className="btn btn-warning w-100 mt-3"
                 >
                   Continue to Reset Password
@@ -150,10 +138,7 @@ export default function ForgotPasswordPage() {
               </div>
             )}
 
-            <button
-              className="primary-btn"
-              disabled={loading}
-            >
+            <button className="primary-btn" disabled={loading}>
               {loading ? (
                 <>
                   <span className="spinner-border spinner-border-sm me-2"></span>
@@ -162,7 +147,6 @@ export default function ForgotPasswordPage() {
               ) : (
                 <>
                   <i className="bi bi-send me-2"></i>
-
                   Generate Reset Token
                 </>
               )}
@@ -170,19 +154,12 @@ export default function ForgotPasswordPage() {
           </form>
 
           <div className="text-center mt-4">
-            <span className="text-secondary">
-              Remember your password?
-            </span>
+            <span className="text-secondary">Remember your password?</span>
 
-            <Link
-              href="/auth/login"
-              className="auth-link fw-bold ms-2"
-            >
+            <Link href="/auth/login" className="auth-link fw-bold ms-2">
               Login
             </Link>
           </div>
-
-          
         </div>
       </div>
     </section>
