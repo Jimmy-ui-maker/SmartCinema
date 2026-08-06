@@ -79,19 +79,20 @@ export default function StaffNavbar({ activeTab, setActiveTab }) {
 
       {/* ================= MOBILE NAVIGATION ================= */}
 
-      <div className="admin-mobile-nav d-lg-none">
-        {menus.map((menu) => (
-          <button
-            key={menu.id}
-            className={activeTab === menu.id ? "active" : ""}
-            onClick={() => setActiveTab(menu.id)}
-          >
-            <i className={`bi ${menu.icon}`}></i>
-
-            <span>{menu.label}</span>
-          </button>
-        ))}
-      </div>
+      {setActiveTab && (
+        <div className="admin-mobile-nav d-lg-none">
+          {menus.map((menu) => (
+            <button
+              key={menu.id}
+              className={activeTab === menu.id ? "active" : ""}
+              onClick={() => setActiveTab(menu.id)}
+            >
+              <i className={`bi ${menu.icon}`}></i>
+              <span>{menu.label}</span>
+            </button>
+          ))}
+        </div>
+      )}
     </>
   );
 }

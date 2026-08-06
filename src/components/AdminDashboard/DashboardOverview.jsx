@@ -98,7 +98,7 @@ export default function DashboardOverview() {
     <div>
       <h2 className="fw-bold">Dashboard Overview</h2>
 
-      <p className="text-muted">Monitor your cinema activities in real time.</p>
+      <p className="">Monitor your cinema activities in real time.</p>
 
       <div className="row g-4 mt-2">
         {cards.map((card) => (

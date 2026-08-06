@@ -1,35 +1,37 @@
 {
-  "name": "UCMN - United Corps Members of Nigeria.",
-  "short_name": "UCMN",
-  "description": "Projects, services, and contact",
-  "start_url": "/",
-  "display": "standalone",
-  "background_color": "#111a2e",
-  "theme_color": "#111a2e",
-  "orientation": "portrait",
+  "name": "CinemaHub - Cinema Ticket Booking & Management System",
+  "short_name": "CinemaHub",
+  "description": "Book movie tickets, reserve seats, manage schedules, payments, and cinema operations with CinemaHub.",
   "id": "/",
+  "start_url": "/",
   "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#09090f",
+  "theme_color": "#dc2626",
+  "categories": ["entertainment", "business", "lifestyle"],
+  "lang": "en",
   "icons": [
     {
-      "src": "/icons/ucmn_logo_192x192.png",
+      "src": "/icons/cinemahub-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/icons/ucmn_logo_256x256.png",
+      "src": "/icons/cinemahub-256.png",
       "sizes": "256x256",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/icons/ucmn_logo_512x512.png",
+      "src": "/icons/cinemahub-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/icons/ucmn_logo_1024x1024.png",
+      "src": "/icons/cinemahub-1024.png",
       "sizes": "1024x1024",
       "type": "image/png",
       "purpose": "any maskable"

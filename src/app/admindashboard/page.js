@@ -25,7 +25,7 @@ import ManageTickets from "@/components/AdminDashboard/ManageTickets";
 
 import Reports from "@/components/AdminDashboard/Reports";
 
-import "./admindashboard.css";
+
 
 export default function AdminDashboard() {
   const router = useRouter();
@@ -62,10 +62,7 @@ export default function AdminDashboard() {
 
   return (
     <div className="admin-page">
-      <StaffNavbar
-  activeTab={activeTab}
-  setActiveTab={setActiveTab}
-/>
+      <StaffNavbar activeTab={activeTab} setActiveTab={setActiveTab} />
 
       <div className="admin-layout">
         <AdminSidebar activeTab={activeTab} setActiveTab={setActiveTab} />
